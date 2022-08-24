@@ -2,102 +2,77 @@
 <html lang="en">
     <head>
         <title>Gameinfluencer creation form</title>
+        <script src="campaignScript.js"></script>
+        <link rel="stylesheet" href="campaignStyle.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <style>
-            .form_section {
-                position: fixed;
-                background-color: darkgray;
-                padding-bottom: 10px;
-                padding-top: 10px;
-                text-align: center;
-                width: 500px;
-                height: 420px;
-                top: 60px;
-                border-radius: 50px;
-            }
-            h2 {
-                text-align: center;
-            }
-            .form_background {
-                display: flex;
-                justify-content: center;
-                position: fixed;
-                background-color: black;
-                bottom: 0;
-                right: 0;
-                left: 0;
-                top: 0;
-            }
-            img {
-                opacity: 50%;
-                transition: .5s ease;
-            }
-            img:hover {
-                opacity: 80%;
-            }
-        </style>
     </head>
     <body>
-    <h2>Gameinfluencer creation form</h2>
-            <div class="form_background">
-                <img src="https://yoast.com/app/uploads/2020/11/microsoft_clarity_fi.png" alt="">
-                <div class="form_section">
-                    <form>
-                        <label for="cname">Campaign name:</label><br>
-                        <input type="text" id="cname" name="cname" minlength="1" maxlength="20" required>
-                        <hr>
+        <h2>Gameinfluencer creation form</h2>
+            <div class="form_section">
+                <form name="campaignForm">
+                    <label for="campaignName">Campaign name:</label></br>
+                    <input type="text" id="campaignName" name="campaignName" onkeyup="textRequirement()" minlength="1" maxlength="20" placeholder="Your campaign name..." equired>
+                    <p id="textRequirementOne" hidden>Your campaign name should be between 1 and 20 characters!</p>
+                    <hr>
 
-                        <label for="cdescription">Campaign description:</label><br>
-                        <input type="text" id="cdescription" name="cdescription" minlength="1" maxlength="200" required>
-                        <hr>
+                    <label for="campaignDescription">Campaign description:</label></br>
+                    <textarea id="campaignDescription" name="campaignDescription" onkeyup="descriptionRequirement()" rows="6" cols="20" placeholder="Your campaign description..." required></textarea>
+                    <p id="descriptionRequirementOne" hidden>Your campaign description should be between 1 and 200 characters!</p>
+                    <hr>
 
-                        <!--
-                        <textarea id="cdescription" name="cdescription" rows="4" cols="20" required></textarea>
-                        <hr>
-                        -->
+                    <label for="campaignGame">Campaign game:</label></br>
+                    <select id="campaignGame" name="campaignGame" required>
+                        <option value="" disabled selected>Select the game</option>
+                        <option value="League of Legends">League of Legends</option>
+                        <option value="DOTA 2">DOTA 2</option>
+                        <option value="Minecraft">Minecraft</option>
+                        <option value="Fortnite">Fortnite</option>
+                        <option value="Apex Legends">Apex Legends</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <hr>
 
-                        <label for="cgame">Campaign game:</label><br>
-                        <select id="cgame" name="cgame" required>
-                            <option value="" disabled selected>Select the game</option>
-                            <option value="League of Legends">League of Legends</option>
-                            <option value="DOTA 2">DOTA 2</option>
-                            <option value="Minecraft">Minecraft</option>
-                            <option value="Fortnite">Fortnite</option>
-                            <option value="Apex Legends">Apex Legends</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <hr>
+                    <input type="text" id="otherGame" name="otherGame" hidden>
 
-                        <input type="text" id="othergame" name="othergame" hidden>
+                    <label for="campaignBudget">Campaign budget:</label>
+                    <input type="number" id="campaignBudget" name="campaignBudget" min="1" max="20000" placeholder="Your campaign budget..." required>
+                    <hr>
 
-                        <label for="cbudget">Campaign budget:</label>
-                        <input type="number" id="cbudget" name="cbudget" min="1" max="20000" required>
-                        <hr>
+                    <label for="campaignStartDate">Campaign start date:</label>
+                    <input type="date" id="campaignStartDate" name="campaignStartDate" required><br></br>
+                    <label for="campaignEndDate">Campaign end date:&nbsp</label>
+                    <input type="date" id="campaignEndDate" name="campaignEndDatee" required>
+                    <hr>
 
-                        <label for="cstartdate">Campaign start date:</label>
-                        <input type="date" id="cstartdate" name="cstartdate" required><br>
-                        <label for="cenddate">Campaign end date:&nbsp</label>
-                        <input type="date" id="cenddate" name="cenddate" required>
-                        <hr>
+                    <p id="questionCrypto">Can the campaign be paid with crypto currency?</p>
+                    <input type="radio" id="yesCrypto" name="paidCrypto" value="yes" required>
+                    <label for="yesCrypto">Yes</label></br>
+                    <input type="radio" id="noCrypto" name="paidCrypto" value="no" required>
+                    <label for="noCrypto">No</label></br>
+                    <hr>
 
-                        <p>Can the campaign be paid with crypto currency?</p>
-                        <input type="radio" id="yescrypto" name="paid_crypto" value="yes" required>
-                        <label for="yescrypto">Yes</label><br>
-                        <input type="radio" id="nocrypto" name="paid_crypto" value="no" required>
-                        <label for="nocrypto">No</label><br>
-                        <hr>
-
-                        <label for="clanguage">Campaign language:</label><br>
-                        <select id="clanguage" name="clanguage" required>
-                            <option value="" disabled selected>Select the language</option>
-                            <option value="English">English</option>
-                            <option value="German">German</option>
-                            <option value="Spanish">Spanish</option>
-                            <option value="Japanese">Japanese</option>
-                        </select>
-                    </form>
-                </div>
+                    <label for="campaignLanguage">Campaign language:</label></br>
+                    <select id="campaignLanguage" name="campaignLanguage" required>
+                        <option value="" disabled selected>Select the language</option>
+                        <option value="English">English</option>
+                        <option value="German">German</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Japanese">Japanese</option>
+                    </select>
+                    <hr>
+                </form>
+                <input type="submit" value="Submit">
+                <hr>
+                <table id="campaignTable">
+                    <tr>
+                        <th>Campaign name</th>
+                        <th>Campaign game</th>
+                        <th>Campaign start date</th>
+                        <th>Campaign budget</th>
+                        <th>Campaign language</th>
+                    </tr>
+                </table>
             </div>
     </body>
 </html>

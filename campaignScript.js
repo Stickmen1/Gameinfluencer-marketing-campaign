@@ -40,7 +40,6 @@ function toggleDateValidation() {
 
 function toggleSubmitInformation() {
     var campaignTable = document.getElementById("campaignTable");
-
     const campaignRowsInformation = ["campaignName","campaignGame","campaignStartDate",
         "campaignBudget","campaignLanguage"];
 

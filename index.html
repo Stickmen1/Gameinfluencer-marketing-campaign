@@ -12,28 +12,31 @@
             <div class="form_section">
                 <form name="campaignForm">
                     <label for="campaignName">Campaign name:</label></br>
-                    <input type="text" id="campaignName" name="campaignName" onkeyup="textRequirement()" minlength="1" maxlength="20" placeholder="Your campaign name..." equired>
-                    <p id="textRequirementOne" hidden>Your campaign name should be between 1 and 20 characters!</p>
+                    <input type="text" id="campaignName" name="campaignName" onkeyup="toggleRequirementColorName()" minlength="1" maxlength="20" placeholder="Your campaign name..." required>
+                    <p id="errorHelperName" hidden>Your campaign name should be between 1 and 20 characters!</p>
                     <hr>
 
                     <label for="campaignDescription">Campaign description:</label></br>
-                    <textarea id="campaignDescription" name="campaignDescription" onkeyup="descriptionRequirement()" rows="6" cols="20" placeholder="Your campaign description..." required></textarea>
-                    <p id="descriptionRequirementOne" hidden>Your campaign description should be between 1 and 200 characters!</p>
+                    <textarea id="campaignDescription" name="campaignDescription" onkeyup="toggleRequirementColorDescription()" rows="6" cols="20" placeholder="Your campaign description..." required></textarea>
+                    <p id="errorHelperDescription" hidden>Your campaign description should be between 1 and 200 characters!</p>
                     <hr>
 
                     <label for="campaignGame">Campaign game:</label></br>
-                    <select id="campaignGame" name="campaignGame" required>
+                    <select id="campaignGame" name="campaignGame" onchange="toggleOtherGame()" required>
                         <option value="" disabled selected>Select the game</option>
                         <option value="League of Legends">League of Legends</option>
                         <option value="DOTA 2">DOTA 2</option>
                         <option value="Minecraft">Minecraft</option>
                         <option value="Fortnite">Fortnite</option>
                         <option value="Apex Legends">Apex Legends</option>
-                        <option value="Other">Other</option>
+                        <option id="otherGameSelected" value="Other">Other</option>
                     </select>
                     <hr>
 
-                    <input type="text" id="otherGame" name="otherGame" hidden>
+                    <div id="otherGameDiv" hidden>
+                        <label for="otherGame" >Other game:</label>
+                        <input type="text" id="otherGame" name="otherGame" >
+                    </div>
 
                     <label for="campaignBudget">Campaign budget:</label>
                     <input type="number" id="campaignBudget" name="campaignBudget" min="1" max="20000" placeholder="Your campaign budget..." required>
@@ -62,7 +65,7 @@
                     </select>
                     <hr>
                 </form>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" onclick="toggleSubmitInformation()">
                 <hr>
                 <table id="campaignTable">
                     <tr>
